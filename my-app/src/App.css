@@ -27,11 +27,32 @@ body {
   align-items: center;
   justify-content: center;
   text-align: center;
+  z-index: -2;
+  position: relative;
+  overflow: hidden;
 }
 
-/* .welcome-container {
-  
-} */
+.decor {
+  position: absolute;
+  z-index: 0;
+
+}
+
+.decor-upper-right { 
+  fill: rgb(250, 247, 203);
+  width: 300px;
+  top: -110px;
+  right: -100px;
+  transform: rotate(310deg);
+}
+
+.decor-lower-left {
+  fill: rgb(201, 228, 247);
+  width: 300px;
+  bottom: -110px;
+  left: -100px;
+  transform: rotate(25deg);
+}
 
 .welcome-container h1 {
   color: #4D5B9E;
