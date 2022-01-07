@@ -1,23 +1,54 @@
-.App {
-  text-align: center;
+* {
+  box-sizing: border-box;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+html, body {
+  margin: 0;
+  height: 100%;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+body {
+  background-color: #dedee2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Inter', sans-serif;
+
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.quiz-container {
+  margin: 0;
+  min-width: 550px;
+  min-height: 550px;
+  background: #F5F7FB;
+  border-radius: 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  text-align: center;
+}
+
+/* .welcome-container {
+  
+} */
+
+.welcome-container h1 {
+  color: #4D5B9E;
+  margin: 0;
+}
+
+.welcome-container p {
+  margin: .75em;
+}
+
+.start-game-btn {
+  background: #4D5B9E;
+  color: #F5F7FB;
+  font-size: 1rem;
+  border: none;
+  border-radius: 5px;
+  padding: .75em 3em;
+  margin: 1em;
+  cursor: pointer;
 }
