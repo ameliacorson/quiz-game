@@ -18,6 +18,7 @@ body {
 
 .quiz-container {
   margin: 0;
+  padding: 3em;
   min-width: 550px;
   min-height: 550px;
   background: #F5F7FB;
@@ -27,7 +28,6 @@ body {
   align-items: center;
   justify-content: center;
   text-align: center;
-  z-index: -2;
   position: relative;
   overflow: hidden;
 }
@@ -41,17 +41,21 @@ body {
 .decor-upper-right { 
   fill: rgb(250, 247, 203);
   width: 300px;
-  top: -110px;
-  right: -100px;
+  top: -120px;
+  right: -120px;
   transform: rotate(310deg);
 }
 
 .decor-lower-left {
   fill: rgb(201, 228, 247);
   width: 300px;
-  bottom: -110px;
+  bottom: -150px;
   left: -100px;
   transform: rotate(25deg);
+}
+
+.welcome-container {
+  display: none;
 }
 
 .welcome-container h1 {
@@ -63,13 +67,52 @@ body {
   margin: .75em;
 }
 
-.start-game-btn {
+.btn {
   background: #4D5B9E;
   color: #F5F7FB;
-  font-size: 1rem;
   border: none;
-  border-radius: 5px;
+  border-radius: 7px;
+  cursor: pointer;
+}
+
+.start-game-btn {
   padding: .75em 3em;
   margin: 1em;
-  cursor: pointer;
+  font-size: 1rem;
+}
+
+.check-answer-btn {
+  margin-top: 2em;
+  padding: .5em 2em;
+}
+
+.all-questions {
+  z-index: 100;
+}
+
+.question-container {
+  margin: 0 auto;
+  text-align: left;
+  color: #293264
+}
+
+.question-container h3 {
+  font-size: 1rem;
+  margin:0;
+  margin-bottom: .5em;
+}
+
+
+.answer-container {
+  display: flex;
+  margin-bottom: 1.5em;
+}
+
+.answer-container div {
+  font-size: 10.24px;
+  color: #293264;
+  border: .75px solid #4D5B9E;
+  margin-right: 15px;
+  padding: 5px 15px;;
+  border-radius: 15px;
 }
