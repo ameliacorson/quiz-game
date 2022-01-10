@@ -1,12 +1,12 @@
 import React from "react"
 import '../App.css';
 
-export default function Welcome() {
+export default function Welcome(props) {
     return (
         <div className="welcome-container">
             <h1> Quizzical </h1>
-            <p> A quiz game that is fun </p>
-            <button className="start-game-btn"> Start Game </button>
+            <p> Ready to test your knowledge?</p>
+            <button className="start-game-btn btn" onClick={props.welcomeToggle}> Start Game </button>
         </div>
     )
 }

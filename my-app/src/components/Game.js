@@ -14,17 +14,21 @@ export default function Game() {
                 .then(res => res.json())
                 .then(data => setQuestions(newQuestionSet(data.results)) 
                 )
+                console.log("fired")
         }, [])
 
-        function scrambleAnswers(correctans, answerArray, correctIndex) {
+        function createAnswers(correctans, answerArray, correctIndex) {
             answerArray.splice(correctIndex, 0, correctans)
-            console.log(answerArray)
-            return (
-                answerArray
-            )
+            const newAnswerArray = answerArray.map(answer => {
+                return ({
+                    answertext: answer.replace(/&quot;/g,'"').replace(/&#039;/g, "'").replace(/&ldquo;/, "“").replace(/&rdquo;/, "”"),
+                    id: nanoid(),
+                    isHeld: false,
+                    isCorrect: answerArray.indexOf(answer) === correctIndex ? true : false
+                })
+            })
+            return newAnswerArray
         }
-
-        // i need to find a way to create a "correctindex" of a random number that will save into the Question component props data. It needs to be called upon to assign the correct answer a place in the answer array, as well as compare to the players selection.
         
         function newQuestionSet(APIdata) {
            let newQuestionData = APIdata.map(quest => {
@@ -33,20 +37,46 @@ export default function Game() {
                     id: nanoid(),
                     question: quest.question,
                     correctIndex: correctIndex,
-                    answers: scrambleAnswers(quest.correct_answer, quest.incorrect_answers, correctIndex),
+                    answers: createAnswers(quest.correct_answer, quest.incorrect_answers, correctIndex),
                })
              })
 
         return newQuestionData
         }
 
+        function holdAnswer(questionID, answerID) {
+           setQuestions(prevQuestions => prevQuestions.map(question => {
+               if (question.id === questionID) {
+                   let newAnswers = question.answers.map(answer => {
+                       if (answer.id === answerID || answer.isHeld){
+                        return ({
+                            ...answer,
+                            isHeld: !answer.isHeld
+                        })
+                       } else {
+                           return answer
+                       }
+                   })
+                return ({
+                    ...question,
+                    answers: newAnswers
+                })
+               }else{
+                   return question
+               }
+           }))
+           console.log(questions)
+        }
+
         const questionElements = questions.map(quest =>{
             return (
                 <Question 
                     key={quest.id}
+                    id={quest.id}
                     question={quest.question}
                     answers={quest.answers}
                     correctIndex={quest.correctIndex}
+                    holdAnswer={holdAnswer}
                 />
             )
         })

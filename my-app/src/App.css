@@ -18,7 +18,7 @@ body {
 
 .quiz-container {
   margin: 0;
-  padding: 2.5em;
+  padding: 3em ;
   width: 550px;
   min-height: 550px;
   background: #F5F7FB;
@@ -41,8 +41,8 @@ body {
 .decor-upper-right { 
   fill: rgb(250, 247, 203);
   width: 300px;
-  top: -120px;
-  right: -120px;
+  top: -140px;
+  right: -140px;
   transform: rotate(310deg);
 }
 
@@ -52,10 +52,6 @@ body {
   bottom: -150px;
   left: -100px;
   transform: rotate(25deg);
-}
-
-.welcome-container {
-  display: none;
 }
 
 .welcome-container h1 {
@@ -94,6 +90,7 @@ body {
   margin: 0 auto;
   text-align: left;
   color: #293264;
+  z-index: 100;
 }
 
 .question-container h3 {
