@@ -11,7 +11,8 @@ export default function Question(props) {
         id={answer.id}
         isCorrect={answer.isCorrect}
         isHeld={answer.isHeld}
-        holdAnswer={() => props.holdAnswer(props.id, answer.id)} />)
+        holdAnswer={() => props.holdAnswer(props.id, answer.id)}
+        checked={props.checked} />)
     })
 
 

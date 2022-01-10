@@ -7,6 +7,9 @@ import { nanoid } from "nanoid"
 export default function Game() {
         
     const [questions, setQuestions] = React.useState([])
+    const [checked, setChecked] = React.useState(false)
+    const [newGame, setNewGame] = React.useState(true)
+    const [score, setScore] = React.useState(0)
     
     
         React.useEffect(() => {
@@ -15,7 +18,7 @@ export default function Game() {
                 .then(data => setQuestions(newQuestionSet(data.results)) 
                 )
                 console.log("fired")
-        }, [])
+        }, [newGame])
 
         function createAnswers(correctans, answerArray, correctIndex) {
             answerArray.splice(correctIndex, 0, correctans)
@@ -68,6 +71,24 @@ export default function Game() {
            console.log(questions)
         }
 
+        function checkAnswers(arr) {
+            setChecked(true)
+            for (let i = 0; i < arr.length; i++) {
+                for (let j = 0; j < arr[i].answers.length; j++)
+                    if (arr[i].answers[j].isHeld === true && arr[i].answers[j].isCorrect === true) {
+                        setScore(prevScore => prevScore + 1)
+                    }
+            }
+
+
+        }
+
+        function playAgain() {
+            setChecked(false)
+            setNewGame(prevNewGame => !prevNewGame)
+            setScore(0)
+        }
+
         const questionElements = questions.map(quest =>{
             return (
                 <Question 
@@ -77,6 +98,8 @@ export default function Game() {
                     answers={quest.answers}
                     correctIndex={quest.correctIndex}
                     holdAnswer={holdAnswer}
+                    checked={checked}
+
                 />
             )
         })
@@ -86,7 +109,9 @@ export default function Game() {
     return (
         <div className="all-questions">
             {questions.length && questionElements}
-            <button className="btn check-answer-btn"> Check Answers </button>
+            {!checked && <button onClick={() => checkAnswers(questions)} className="btn check-answer-btn"> Check Answers </button>}
+            {checked && <span> You got {score}/5 correct</span>}
+            {checked && <button onClick={playAgain} className="btn check-answer-btn"> Play Again </button>}
         </div>
     )
 }
