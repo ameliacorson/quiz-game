@@ -57,10 +57,18 @@ body {
 .welcome-container h1 {
   color: #4D5B9E;
   margin: 0;
+  font-size: 2rem;
 }
 
 .welcome-container p {
-  margin: .75em;
+  margin: 0;
+  color: #293264
+}
+
+.category-container {
+  margin-top: 3em;
+  display: grid;
+  grid-template: auto auto auto/ auto auto;
 }
 
 .btn {
@@ -71,10 +79,15 @@ body {
   cursor: pointer;
 }
 
-.start-game-btn {
+.category-btn {
   padding: .75em 3em;
-  margin: 1em;
+  margin: .5em;
   font-size: 1rem;
+}
+
+.new-ctg-btn{
+  padding: .5em 2em;
+  margin-left: 5px;
 }
 
 .check-answer-btn {
