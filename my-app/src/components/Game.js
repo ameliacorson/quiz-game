@@ -48,7 +48,8 @@ export default function Game(props) {
           .replace(/&quot;/g, '"')
           .replace(/&#039;/g, "'")
           .replace(/&ldquo;/, "“")
-          .replace(/&rdquo;/, "”"),
+          .replace(/&rdquo;/, "”")
+          .replace(/&amp;/, "&"),
         id: nanoid(),
         isHeld: false,
         isCorrect: answerArray.indexOf(answer) === correctIndex ? true : false,

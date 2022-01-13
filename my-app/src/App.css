@@ -138,3 +138,7 @@ span {
   font-weight: 700;
   padding-right: 15px;
 }
+
+@media (min-width: 500px) {
+  
+}
