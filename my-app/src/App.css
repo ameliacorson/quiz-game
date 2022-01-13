@@ -172,6 +172,7 @@ span {
 
   .question-container {
     margin: 0 auto;
+    padding: .75em;
     text-align: left;
     color: #293264;
     width: 100%;
@@ -187,12 +188,12 @@ span {
 
   .question-container h3 {
     font-size: 1.2rem;
-    margin-bottom: 1em;
-    line-height: 1.3;
+    margin-bottom: 1.5em;
+    line-height: 1.2;
   }
 
   .question-container hr {
-    margin-top: 0.5em;
+    margin-top: 1.5em;
     border: 0.2px solid #edeff8;
   }
 
