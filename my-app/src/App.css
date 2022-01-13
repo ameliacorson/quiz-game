@@ -89,6 +89,7 @@ body {
 
 .answer-container {
   display: flex;
+  justify-content: left;
   margin-bottom: 1.5em;
 }
 
@@ -100,6 +101,11 @@ body {
   padding: 4px 13px;
   border-radius: 15px;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
 }
 
 .result-container {
