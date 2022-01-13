@@ -45,10 +45,13 @@ export default function Game(props) {
     const newAnswerArray = answerArray.map((answer) => {
       return {
         answertext: answer
-          .replace(/&quot;/g, '"')
-          .replace(/&#039;/g, "'")
-          .replace(/&ldquo;/, "“")
-          .replace(/&rdquo;/, "”"),
+        .replace(/&quot;/, '"')
+        .replace(/&quot;/, '"')
+        .replace(/&#039;/, "'")
+        .replace(/&ldquo;/, "“")
+        .replace(/&rdquo;/, "”")
+        .replace(/&amp; /, "&")
+        .replace(/&hellip;/, "..."),
         id: nanoid(),
         isHeld: false,
         isCorrect: answerArray.indexOf(answer) === correctIndex ? true : false,
