@@ -157,9 +157,10 @@ span {
   }
 
   .welcome-container {
-    padding: 5em;
+    padding: 3em;
     width: 100%
   }
+
 
   .category-container {
     width: 100%;
@@ -196,16 +197,18 @@ span {
   }
 
   .answer-container {
-    display: flex;
+    flex-direction: column;
     margin-bottom: .85em;
-    justify-content: left;
+    justify-content: center;
+    align-items: center;
   }
 
   .answer-container div {
     font-size: 0.75rem;
+    width: 60%;
     border: 0.5px solid #4d5b9e;
-    margin-right: 6px;
-    padding: 3px 9px;
+    margin-bottom: 6px;
+    padding: 6px 0;
     border-radius: 10px;
   }
 
