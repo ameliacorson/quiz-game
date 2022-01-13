@@ -12,14 +12,33 @@ export default function Game(props) {
 
   console.log(props.category);
 
+  const newQuestionSet = React.useCallback(
+      (APIdata) => {
+        let newQuestionData = APIdata.map((quest) => {
+            let correctIndex = Math.floor(Math.random() * 4);
+            return {
+                id: nanoid(),
+                question: quest.question,
+                correctIndex: correctIndex,
+                answers: createAnswers(
+                    quest.correct_answer,
+                    quest.incorrect_answers,
+                    correctIndex
+                )
+            };
+        });
+        return newQuestionData;
+    },
+      [],
+  )
+
   React.useEffect(() => {
     fetch(
       `https://opentdb.com/api.php?amount=5&category=${props.category}&difficulty=medium&type=multiple`
     )
       .then((res) => res.json())
       .then((data) => setQuestions(newQuestionSet(data.results)));
-    console.log(questions);
-  }, [props.category, replay]);
+  }, [props.category, replay, newQuestionSet]);
 
   function createAnswers(correctans, answerArray, correctIndex) {
     answerArray.splice(correctIndex, 0, correctans);
@@ -29,33 +48,13 @@ export default function Game(props) {
           .replace(/&quot;/g, '"')
           .replace(/&#039;/g, "'")
           .replace(/&ldquo;/, "“")
-          .replace(/&rdquo;/, "”")
-          .replace(/&amp; /, "&")
-          .replace(/&hellip;/, "..."),
+          .replace(/&rdquo;/, "”"),
         id: nanoid(),
         isHeld: false,
         isCorrect: answerArray.indexOf(answer) === correctIndex ? true : false,
       };
     });
     return newAnswerArray;
-  }
-
-  function newQuestionSet(APIdata) {
-    let newQuestionData = APIdata.map((quest) => {
-      let correctIndex = Math.floor(Math.random() * 4);
-      return {
-        id: nanoid(),
-        question: quest.question,
-        correctIndex: correctIndex,
-        answers: createAnswers(
-          quest.correct_answer,
-          quest.incorrect_answers,
-          correctIndex
-        ),
-      };
-    });
-
-    return newQuestionData;
   }
 
   function holdAnswer(questionID, answerID) {
