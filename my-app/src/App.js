@@ -19,7 +19,7 @@ export default function App() {
         <div className="quiz-container">
             {welcomeScreen && <div className="welcome-container">
                 <h1> Quizzical </h1>
-                <p>Are you ready to test your knowledge?</p>
+                <p>Test your knowledge!</p>
                 <div className="category-container">
                     <button onClick={() => chooseCategory(11)}className="btn category-btn">Film</button>
                     <button onClick={() => chooseCategory(23)}className="btn category-btn">History</button>
