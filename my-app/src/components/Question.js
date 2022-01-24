@@ -18,14 +18,17 @@ export default function Question(props) {
 
   return (
     <div className="question-container">
-      <h3> {props.question
+      <h3>
+        {" "}
+        {props.question
           .replace(/&quot;/, '"')
           .replace(/&quot;/, '"')
           .replace(/&#039;/, "'")
           .replace(/&ldquo;/, "“")
           .replace(/&rdquo;/, "”")
           .replace(/&amp; /, "&")
-          .replace(/&hellip;/, "...")}</h3>
+          .replace(/&hellip;/, "...")}
+      </h3>
       <div className="answer-container">{answerElements}</div>
       <hr></hr>
     </div>

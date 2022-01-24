@@ -1,7 +1,7 @@
 import React from "react";
 import "../App.css";
 import Question from "./Question";
-
+import * as ReactBootstrap from 'react-bootstrap'
 import { nanoid } from "nanoid";
 
 export default function Game(props) {
@@ -9,35 +9,33 @@ export default function Game(props) {
   const [checked, setChecked] = React.useState(false);
   const [replay, setReplay] = React.useState(true);
   const [score, setScore] = React.useState(0);
+  const [loading, setLoading] = React.useState(false);
 
-  console.log(props.category);
 
-  const newQuestionSet = React.useCallback(
-      (APIdata) => {
-        let newQuestionData = APIdata.map((quest) => {
-            let correctIndex = Math.floor(Math.random() * 4);
-            return {
-                id: nanoid(),
-                question: quest.question,
-                correctIndex: correctIndex,
-                answers: createAnswers(
-                    quest.correct_answer,
-                    quest.incorrect_answers,
-                    correctIndex
-                )
-            };
-        });
-        return newQuestionData;
-    },
-      [],
-  )
+  const newQuestionSet = React.useCallback((APIdata) => {
+    setLoading(true)
+    let newQuestionData = APIdata.map((quest) => {
+      let correctIndex = Math.floor(Math.random() * 4);
+      return {
+        id: nanoid(),
+        question: quest.question,
+        correctIndex: correctIndex,
+        answers: createAnswers(
+          quest.correct_answer,
+          quest.incorrect_answers,
+          correctIndex
+        ),
+      };
+    });
+    return newQuestionData;
+  }, []);
 
   React.useEffect(() => {
     fetch(
       `https://opentdb.com/api.php?amount=5&category=${props.category}&difficulty=medium&type=multiple`
     )
       .then((res) => res.json())
-      .then((data) => setQuestions(newQuestionSet(data.results)));
+      .then((data) => setQuestions(newQuestionSet(data.results)))
   }, [props.category, replay, newQuestionSet]);
 
   function createAnswers(correctans, answerArray, correctIndex) {
@@ -45,13 +43,13 @@ export default function Game(props) {
     const newAnswerArray = answerArray.map((answer) => {
       return {
         answertext: answer
-        .replace(/&quot;/, '"')
-        .replace(/&quot;/, '"')
-        .replace(/&#039;/, "'")
-        .replace(/&ldquo;/, "“")
-        .replace(/&rdquo;/, "”")
-        .replace(/&amp; /, "&")
-        .replace(/&hellip;/, "..."),
+          .replace(/&quot;/, '"')
+          .replace(/&quot;/, '"')
+          .replace(/&#039;/, "'")
+          .replace(/&ldquo;/, "“")
+          .replace(/&rdquo;/, "”")
+          .replace(/&amp; /, "&")
+          .replace(/&hellip;/, "..."),
         id: nanoid(),
         isHeld: false,
         isCorrect: answerArray.indexOf(answer) === correctIndex ? true : false,
@@ -83,7 +81,6 @@ export default function Game(props) {
         }
       })
     );
-    console.log(questions);
   }
 
   function checkAnswers(arr) {
@@ -129,29 +126,33 @@ export default function Game(props) {
     <div className="game-container">
       {!props.welcomeScreen && (
         <div className="all-questions">
-          {questions.length && questionElements}
-        </div>)}
-        {!checked && (
-            <button
-              onClick={() => checkAnswers(questions)}
-              className="btn check-answer-btn"
-            >
-              {" "}
-              Check Answers{" "}
-            </button>
-          )}
-          {checked && (
-            <div className="result-container">
-              <span> You got {score}/5 correct</span>
-              <button onClick={playAgain} className="btn play-again-btn">
-                {" "}
-                Play Again{" "}
-              </button>
-              <button onClick={newCategory} className="btn new-ctg-btn">
-                {" "}
-                Start Over{" "}
-              </button>
-            </div>
+          {loading ? (questionElements) :
+          <ReactBootstrap.Spinner animation="border" /> }
+          
+        </div>
+      )}
+      {!checked && (
+        loading &&
+          <button
+          onClick={() => checkAnswers(questions)}
+          className="btn check-answer-btn"
+        >
+          {" "}
+          Check Answers{" "}
+        </button>
+      )}
+      {checked && (
+        <div className="result-container">
+          <span> You got {score}/5 correct</span>
+          <button onClick={playAgain} className="btn play-again-btn">
+            {" "}
+            Play Again{" "}
+          </button>
+          <button onClick={newCategory} className="btn new-ctg-btn">
+            {" "}
+            Start Over{" "}
+          </button>
+        </div>
       )}
     </div>
   );
