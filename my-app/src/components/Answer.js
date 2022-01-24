@@ -1,5 +1,5 @@
 import React from "react";
-import "../App.css";
+
 
 export default function Answer(props) {
   let answerStyle = {};

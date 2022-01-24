@@ -1,7 +1,6 @@
 import React from "react";
-import "../App.css";
 import Question from "./Question";
-import * as ReactBootstrap from 'react-bootstrap'
+import * as ReactBootstrap from 'react-bootstrap';
 import { nanoid } from "nanoid";
 
 export default function Game(props) {
@@ -100,6 +99,7 @@ export default function Game(props) {
     setReplay((prevReplay) => !prevReplay);
     setChecked(false);
     setScore(0);
+    setLoading(false);
   }
 
   function newCategory() {

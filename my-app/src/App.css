@@ -46,6 +46,7 @@ body {
   text-shadow: 2px 2px var(--clr-burg-50);
   margin: 0;
   font-size: 2.5rem;
+  font-weight: 900;
 }
 
 .welcome-container p {
@@ -75,6 +76,11 @@ body {
   font-size: 1rem;
   box-shadow: 5px 5px rgba(156, 15, 72, .5);
 }  
+
+.category-btn:hover {
+  background: var(--clr-burg-50);
+  color: #f5f7fb;
+}
 
 .new-ctg-btn {
   margin-left: 5px;
