@@ -186,6 +186,8 @@ span {
   }
 
   .check-answer-btn {
+    font-size: 1rem;
+    padding: 1em 2em;
     margin: 1em 0 2.5em 0;
   }
 
@@ -203,6 +205,10 @@ span {
     flex-direction: column;
   }
 
+  .quiz-container {
+    padding-top: 5em;
+  }
+  
   .question-container {
     margin: 0 auto;
     padding: .75em;
