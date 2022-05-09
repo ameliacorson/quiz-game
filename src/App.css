@@ -20,11 +20,15 @@ body {
   height: 100%;
 }
 
- body {
+body {
   background-color: var(--clr-offwhite);
   font-family: "Inter", sans-serif;
   padding: .5em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
+
 
 .quiz-container {
   margin: 0 auto 3em auto;
