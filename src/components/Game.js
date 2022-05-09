@@ -2,6 +2,7 @@ import React from "react";
 import Question from "./Question";
 import * as ReactBootstrap from 'react-bootstrap';
 import { nanoid } from "nanoid";
+import { decode } from "html-entities";
 
 export default function Game(props) {
   const [questions, setQuestions] = React.useState([]);
@@ -41,14 +42,7 @@ export default function Game(props) {
     answerArray.splice(correctIndex, 0, correctans);
     const newAnswerArray = answerArray.map((answer) => {
       return {
-        answertext: answer
-          .replace(/&quot;/, '"')
-          .replace(/&quot;/, '"')
-          .replace(/&#039;/, "'")
-          .replace(/&ldquo;/, "“")
-          .replace(/&rdquo;/, "”")
-          .replace(/&amp; /, "&")
-          .replace(/&hellip;/, "..."),
+        answertext: decode(answer),
         id: nanoid(),
         isHeld: false,
         isCorrect: answerArray.indexOf(answer) === correctIndex ? true : false,

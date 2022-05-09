@@ -1,5 +1,6 @@
 import React from "react";
 import Answer from "./Answer";
+import { decode } from "html-entities";
 
 export default function Question(props) {
   const answerElements = props.answers.map((answer) => {
@@ -20,14 +21,7 @@ export default function Question(props) {
     <div className="question-container">
       <h3>
         {" "}
-        {props.question
-          .replace(/&quot;/, '"')
-          .replace(/&quot;/, '"')
-          .replace(/&#039;/, "'")
-          .replace(/&ldquo;/, "“")
-          .replace(/&rdquo;/, "”")
-          .replace(/&amp; /, "&")
-          .replace(/&hellip;/, "...")}
+        {decode(props.question)}
       </h3>
       <div className="answer-container">{answerElements}</div>
       <hr></hr>
