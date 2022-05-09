@@ -1,5 +1,5 @@
 
-# Quizzical Application - [Live Site][https://nostalgic-bassi-40e503.netlify.app/]
+# Quizzical Application - [Live Site][liveSite]
 
 This is a simple quiz game application that pulls questions by category from the [Open Trivia API][OpenTrivia], offers five multiple choice questions and grades the user on their correct answers.
 
@@ -18,3 +18,4 @@ The initial project was designed acccording to this [Figma file][figma], and the
 
 [OpenTrivia]: https://opentdb.com/
 [figma]: https://www.figma.com/file/YNd9p6W6g11qeqrZN1H1Mv/Quizzical-App-(Copy)?node-id=0%3A1
+[liveSite]: https://nostalgic-bassi-40e503.netlify.app/
